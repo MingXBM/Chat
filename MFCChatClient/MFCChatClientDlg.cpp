@@ -7,6 +7,7 @@
 #include "MFCChatClient.h"
 #include "MFCChatClientDlg.h"
 #include "afxdialogex.h"
+#include <atlbase.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -161,8 +162,16 @@ void CMFCChatClientDlg::OnBnClickedConnectBtn()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	TRACE("Connect Btn");
-	MessageBoxW(L"Connect Btn");
-	//MessageBoxW(L"Connect Btn");
+	CString strPort, strIP;
+	//从控件里面获得内容
+	GetDlgItem(IDC_PORT_EDIT)->GetWindowText(strPort);
+	GetDlgItem(IDC_IPADDRESS)->GetWindowText(strIP);
+
+	//Cstring转char*
+	USES_CONVERSION;
+	LPSTR szPort = (LPSTR)T2A(strPort);
+	LPSTR szIP = (LPSTR)T2A(strIP);
+	TRACE("szPort=%s,szIP=%s", szPort, szIP);
 }
 
 
